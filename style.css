@@ -5,11 +5,13 @@ body {
   background: #f4f6f8;
   color: #333;
 }
+
 h1 {
   text-align: center;
   font-size: 1.5rem;
   margin-bottom: 1rem;
 }
+
 input, select {
   display: block;
   width: 100%;
@@ -21,28 +23,44 @@ input, select {
   border-radius: 6px;
   box-sizing: border-box;
 }
+
 table {
   width: 100%;
+  table-layout: fixed;
   border-collapse: collapse;
   margin-top: 1rem;
   font-size: 0.9rem;
 }
+
 th, td {
   border: 1px solid #ddd;
   padding: 0.5rem;
   text-align: left;
-  word-break: break-word;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
 }
+
 thead {
   background: #e0e0e0;
 }
+
+/* === Фіксована ширина колонок === */
+th:nth-child(1), td:nth-child(1) { width: 5%; }   /* № */
+th:nth-child(2), td:nth-child(2) { width: 30%; }  /* Назва ТЦК */
+th:nth-child(3), td:nth-child(3) { width: 20%; }  /* Телефон */
+th:nth-child(4), td:nth-child(4) { width: 25%; }  /* Email */
+th:nth-child(5), td:nth-child(5) { width: 20%; }  /* Область */
+
 @media screen and (max-width: 768px) {
   table, thead, tbody, th, td, tr {
     display: block;
   }
+
   thead {
     display: none;
   }
+
   tr {
     margin-bottom: 1rem;
     background: #fff;
@@ -50,11 +68,13 @@ thead {
     border-radius: 6px;
     padding: 0.5rem;
   }
+
   td {
     display: flex;
     justify-content: space-between;
     padding: 0.5rem 0;
   }
+
   td::before {
     content: attr(data-label);
     font-weight: bold;
