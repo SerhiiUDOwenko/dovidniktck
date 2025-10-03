@@ -1,18 +1,37 @@
+:root {
+  --bg-color: #f4f6f8;
+  --text-color: #333;
+  --table-bg: #fff;
+  --header-bg: #e0e0e0;
+  --hover-bg: #f0f8ff;
+  --highlight: #ffeeba;
+}
+
 body {
   font-family: system-ui, sans-serif;
   margin: 0;
   padding: 1rem;
-  background: #f4f6f8;
-  color: #333;
+  background: var(--bg-color);
+  color: var(--text-color);
+  transition: background 0.3s, color 0.3s;
+}
+
+body.dark {
+  --bg-color: #1e1e1e;
+  --text-color: #f0f0f0;
+  --table-bg: #2a2a2a;
+  --header-bg: #444;
+  --hover-bg: #333;
+  --highlight: #444444;
 }
 
 h1 {
   text-align: center;
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   margin-bottom: 1rem;
 }
 
-input, select {
+input, select, button {
   display: block;
   width: 100%;
   max-width: 600px;
@@ -22,6 +41,16 @@ input, select {
   border: 1px solid #ccc;
   border-radius: 6px;
   box-sizing: border-box;
+  background: #fff;
+  color: #000;
+}
+
+button {
+  cursor: pointer;
+  background: #007acc;
+  color: #fff;
+  border: none;
+  margin-top: 1rem;
 }
 
 table {
@@ -30,6 +59,16 @@ table {
   border-collapse: collapse;
   margin-top: 1rem;
   font-size: 0.9rem;
+  background: var(--table-bg);
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+  overflow: hidden;
+}
+
+thead {
+  background: var(--header-bg);
+  position: sticky;
+  top: 0;
+  z-index: 1;
 }
 
 th, td {
@@ -39,19 +78,30 @@ th, td {
   word-wrap: break-word;
   overflow-wrap: break-word;
   white-space: normal;
+  vertical-align: top;
+  color: var(--text-color);
 }
 
-thead {
-  background: #e0e0e0;
+tbody tr:hover {
+  background-color: var(--hover-bg);
+  transition: background-color 0.2s ease-in-out;
 }
 
 /* === Фіксована ширина колонок === */
-th:nth-child(1), td:nth-child(1) { width: 5%; }   /* № */
-th:nth-child(2), td:nth-child(2) { width: 30%; }  /* Назва ТЦК */
-th:nth-child(3), td:nth-child(3) { width: 20%; }  /* Телефон */
-th:nth-child(4), td:nth-child(4) { width: 25%; }  /* Email */
-th:nth-child(5), td:nth-child(5) { width: 20%; }  /* Область */
+th:nth-child(1), td:nth-child(1) { width: 5%; }
+th:nth-child(2), td:nth-child(2) { width: 30%; }
+th:nth-child(3), td:nth-child(3) { width: 20%; }
+th:nth-child(4), td:nth-child(4) { width: 25%; }
+th:nth-child(5), td:nth-child(5) { width: 20%; }
 
+/* === Підсвічування пошуку === */
+mark {
+  background-color: var(--highlight);
+  padding: 0 2px;
+  border-radius: 3px;
+}
+
+/* === Адаптивність === */
 @media screen and (max-width: 768px) {
   table, thead, tbody, th, td, tr {
     display: block;
@@ -63,10 +113,11 @@ th:nth-child(5), td:nth-child(5) { width: 20%; }  /* Область */
 
   tr {
     margin-bottom: 1rem;
-    background: #fff;
+    background: var(--table-bg);
     border: 1px solid #ccc;
     border-radius: 6px;
     padding: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
   }
 
   td {
@@ -80,5 +131,6 @@ th:nth-child(5), td:nth-child(5) { width: 20%; }  /* Область */
     font-weight: bold;
     flex: 1;
     padding-right: 1rem;
+    color: var(--text-color);
   }
 }
