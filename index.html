@@ -9,124 +9,139 @@
   <meta name="keywords" content="ТЦК, військкомат контакти, адреса ТЦК, телефон чергового ТЦК, мобілізація довідник">
   
   <style>
-    :root {
-      --primary-color: #1e3a8a; /* Темно-синій "держслужбовець" */
-      --accent-color: #fbbf24;  /* Тризуб-золотий */
-      --text-color: #1f2937;
-      --bg-color: #f3f4f6;
-      --card-bg: #ffffff;
-    }
+   :root {
+  /* Світла тема (за замовчуванням) */
+  --primary-color: #1e3a8a;
+  --accent-color: #fbbf24;
+  --text-color: #1f2937;
+  --bg-color: #f3f4f6;
+  --card-bg: #ffffff;
+  --border-color: #d1d5db;
+  --hover-bg: #f9fafb;
+}
 
-    body {
-      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-      background-color: var(--bg-color);
-      color: var(--text-color);
-      margin: 0;
-      padding: 0;
-      line-height: 1.6;
-    }
+/* Темна тема (активується JS) */
+body.dark {
+  --primary-color: #3b82f6;
+  --accent-color: #d97706;
+  --text-color: #e5e7eb;
+  --bg-color: #111827;
+  --card-bg: #1f2937;
+  --border-color: #374151;
+  --hover-bg: #374151;
+}
 
-    /* Шапка як на урядових сайтах */
-    header {
-      background-color: var(--primary-color);
-      color: white;
-      padding: 1rem 2rem;
-      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-      text-align: center;
-    }
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  margin: 0;
+  transition: background 0.3s, color 0.3s;
+}
 
-    h1 {
-      margin: 0;
-      font-size: 1.5rem;
-      font-weight: 600;
-    }
-    
-    .subtitle {
-      font-size: 0.9rem;
-      opacity: 0.9;
-      margin-top: 5px;
-    }
+header {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 1rem;
+  text-align: center;
+}
 
-    .container {
-      max-width: 1200px;
-      margin: 20px auto;
-      padding: 0 15px;
-    }
+.container {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 0 15px;
+}
 
-    /* Панель керування */
-    .controls {
-      background: var(--card-bg);
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-      display: flex;
-      flex-wrap: wrap;
-      gap: 15px;
-      margin-bottom: 20px;
-      border-left: 5px solid var(--accent-color);
-    }
+.controls {
+  background: var(--card-bg);
+  padding: 15px;
+  border-radius: 8px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+  border: 1px solid var(--border-color);
+}
 
-    input, select {
-      padding: 10px;
-      border: 1px solid #d1d5db;
-      border-radius: 6px;
-      font-size: 1rem;
-      flex-grow: 1;
-    }
+input, select {
+  padding: 10px;
+  border: 1px solid var(--border-color);
+  background: var(--card-bg);
+  color: var(--text-color);
+  border-radius: 6px;
+  flex-grow: 1;
+}
 
-    button {
-      background-color: var(--primary-color);
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: 500;
-      transition: background 0.2s;
-    }
+button {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+}
 
-    button:hover { background-color: #172554; }
-    button.secondary { background-color: #4b5563; }
+/* Підсвітка пошуку */
+mark {
+  background-color: var(--accent-color);
+  color: black;
+  border-radius: 2px;
+}
 
-    /* Таблиця */
-    .table-container {
-      overflow-x: auto; /* Щоб на телефоні можна було гортати таблицю */
-      background: var(--card-bg);
-      border-radius: 8px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-    }
+/* Таблиця */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--card-bg);
+  border-radius: 8px;
+  overflow: hidden;
+}
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      min-width: 600px;
-    }
+th {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 12px;
+  text-align: left;
+}
 
-    th {
-      background-color: #e5e7eb;
-      text-align: left;
-      padding: 12px 15px;
-      font-weight: 600;
-    }
+td {
+  padding: 12px;
+  border-bottom: 1px solid var(--border-color);
+}
 
-    td {
-      padding: 12px 15px;
-      border-bottom: 1px solid #e5e7eb;
-    }
+tr:hover { background-color: var(--hover-bg); }
 
-    tr:hover { background-color: #f9fafb; }
-
-    /* Footer з перехресним посиланням */
-    footer {
-      text-align: center;
-      padding: 20px;
-      margin-top: 40px;
-      color: #6b7280;
-      font-size: 0.9rem;
-    }
-    
-    footer a { color: var(--primary-color); text-decoration: none; font-weight: bold; }
-  </style>
+/* --- МОБІЛЬНА АДАПТАЦІЯ (КАРТКИ) --- */
+@media (max-width: 768px) {
+  thead { display: none; } /* Ховаємо заголовок таблиці */
+  
+  tr {
+    display: block;
+    margin-bottom: 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background: var(--card-bg);
+  }
+  
+  td {
+    display: flex;
+    justify-content: space-between;
+    text-align: right;
+    border-bottom: 1px solid var(--border-color);
+    padding: 10px;
+  }
+  
+  td:last-child { border-bottom: none; }
+  
+  /* Використовуємо data-label, який додає ваш JS */
+  td::before {
+    content: attr(data-label);
+    font-weight: bold;
+    text-align: left;
+    color: var(--primary-color);
+    margin-right: 10px;
+  }
+}  </style>
 </head>
 <body>
 
