@@ -2,31 +2,174 @@
 <html lang="uk">
 <head>
   <meta charset="UTF-8">
-  <title>Довідник ТЦК та СП</title>
-  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Довідник ТЦК та СП України: Контакти, Адреси, Телефони</title>
+  <meta name="description" content="Повний довідник контактів ТЦК та СП України. Пошук за областю, актуальні телефони чергових частин, адреси та email. Інформація для військовозобов'язаних.">
+  <meta name="keywords" content="ТЦК, військкомат контакти, адреса ТЦК, телефон чергового ТЦК, мобілізація довідник">
+  
+  <style>
+    :root {
+      --primary-color: #1e3a8a; /* Темно-синій "держслужбовець" */
+      --accent-color: #fbbf24;  /* Тризуб-золотий */
+      --text-color: #1f2937;
+      --bg-color: #f3f4f6;
+      --card-bg: #ffffff;
+    }
+
+    body {
+      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+    }
+
+    /* Шапка як на урядових сайтах */
+    header {
+      background-color: var(--primary-color);
+      color: white;
+      padding: 1rem 2rem;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+    
+    .subtitle {
+      font-size: 0.9rem;
+      opacity: 0.9;
+      margin-top: 5px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 0 15px;
+    }
+
+    /* Панель керування */
+    .controls {
+      background: var(--card-bg);
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-bottom: 20px;
+      border-left: 5px solid var(--accent-color);
+    }
+
+    input, select {
+      padding: 10px;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      font-size: 1rem;
+      flex-grow: 1;
+    }
+
+    button {
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: background 0.2s;
+    }
+
+    button:hover { background-color: #172554; }
+    button.secondary { background-color: #4b5563; }
+
+    /* Таблиця */
+    .table-container {
+      overflow-x: auto; /* Щоб на телефоні можна було гортати таблицю */
+      background: var(--card-bg);
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 600px;
+    }
+
+    th {
+      background-color: #e5e7eb;
+      text-align: left;
+      padding: 12px 15px;
+      font-weight: 600;
+    }
+
+    td {
+      padding: 12px 15px;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    tr:hover { background-color: #f9fafb; }
+
+    /* Footer з перехресним посиланням */
+    footer {
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+      color: #6b7280;
+      font-size: 0.9rem;
+    }
+    
+    footer a { color: var(--primary-color); text-decoration: none; font-weight: bold; }
+  </style>
 </head>
 <body>
-  <h1>📘 Довідник ТЦК та СП України</h1>
 
-  <input type="text" id="search" placeholder="🔍 Пошук за назвою, email або телефоном...">
-  <select id="regionFilter">
-    <option value="">Всі області</option>
-  </select>
+  <header>
+    <h1>🔱 Єдиний довідник контактів ТЦК та СП</h1>
+    <div class="subtitle">Актуальна база адрес, телефонів та електронних пошт</div>
+  </header>
 
-  <button onclick="toggleTheme()">🌙 Перемкнути тему</button>
-  <button onclick="exportCSV()">📤 Експортувати CSV</button>
+  <div class="container">
+    
+    <div class="controls">
+      <input type="text" id="search" placeholder="🔍 Введіть місто або назву району...">
+      <select id="regionFilter">
+        <option value="">Всі області України</option>
+        </select>
+      <button onclick="exportCSV()">📤 Завантажити CSV</button>
+      <button class="secondary" onclick="toggleTheme()">🌙 Темна тема</button>
+    </div>
 
-  <table id="tzkTable">
-    <thead>
-      <tr>
-        <th>№</th>
-        <th>Назва ТЦК</th>
-        <th>Контакти</th>
-        <th>Область</th>
-      </tr>
-    </thead>
-    <tbody></tbody>
-  </table>
+    <div class="table-container">
+      <table id="tzkTable">
+        <thead>
+          <tr>
+            <th width="5%">№</th>
+            <th width="35%">Назва установи</th>
+            <th width="40%">Контакти (Адреса, Тел, Email)</th>
+            <th width="20%">Область</th>
+          </tr>
+        </thead>
+        <tbody>
+          </tbody>
+      </table>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>Інформація зібрана з відкритих джерел.</p>
+    <p>
+      Також користуйтесь нашим сервісом: 
+      <a href="https://serhiiudowenko.github.io/translit/">🇺🇦 Транслітерація для закордонного паспорта</a>
+    </p>
+  </footer>
 
   <script src="script.js"></script>
 </body>
